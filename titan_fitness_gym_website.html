@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN FITNESS | Forge Your Strength</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        titan: {
+                            950: '#090a0f',
+                            900: '#0f1117',
+                            800: '#181b24',
+                            700: '#232733',
+                            orange: '#ff5e00',
+                            gold: '#ffb700',
+                            accent: '#ff3d00'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'neon-orange': '0 0 25px rgba(255, 94, 0, 0.4)',
+                        'neon-gold': '0 0 25px rgba(255, 183, 0, 0.4)',
+                        'glow-lg': '0 10px 30px -10px rgba(255, 94, 0, 0.5)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090a0f;
+            color: #f3f4f6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(9, 10, 15, 0.7), rgba(9, 10, 15, 0.95)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ff5e00 0%, #ffb700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .border-glow {
+            box-shadow: 0 0 15px rgba(255, 94, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .border-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 94, 0, 0.5);
+            border-color: #ff5e00;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232733;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff5e00;
+        }
+    </style>
+</head>
+<body class="bg-titan-950 text-gray-100 antialiased selection:bg-titan-orange selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-titan-950/80 backdrop-blur-md border-b border-titan-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-titan-orange to-titan-gold flex items-center justify-center text-titan-950 font-black text-xl shadow-neon-orange group-hover:scale-105 transition-transform">
+                    <i data-lucide="dumbbell" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-black text-2xl tracking-wider text-white">TITAN<span class="text-titan-orange">FITNESS</span></span>
+                    <span class="text-[10px] tracking-widest text-titan-gold font-semibold uppercase -mt-1">Forge Your Strength</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="font-medium text-sm hover:text-titan-orange transition-colors">Home</a>
+                <a href="#classes" class="font-medium text-sm hover:text-titan-orange transition-colors">Classes</a>
+                <a href="#trainers" class="font-medium text-sm hover:text-titan-orange transition-colors">Trainers</a>
+                <a href="#calculator" class="font-medium text-sm hover:text-titan-orange transition-colors">Calculator</a>
+                <a href="#pricing" class="font-medium text-sm hover:text-titan-orange transition-colors">Pricing</a>
+                <a href="#contact" class="font-medium text-sm hover:text-titan-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="openModal('joinModal')" class="relative group overflow-hidden rounded-lg px-6 py-2.5 bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-bold text-sm tracking-wide shadow-neon-orange transition-all duration-300 hover:scale-105 active:scale-95">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <span>Join Now</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-titan-800 text-gray-200 hover:text-titan-orange focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-titan-900 border-b border-titan-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Home</a>
+            <a href="#classes" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Classes</a>
+            <a href="#trainers" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Trainers</a>
+            <a href="#calculator" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Calculator</a>
+            <a href="#pricing" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Pricing</a>
+            <a href="#contact" class="block py-2 text-base font-medium hover:text-titan-orange transition-colors">Contact</a>
+            <div class="pt-2">
+                <button onclick="openModal('joinModal')" class="w-full text-center py-3 rounded-lg bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-bold shadow-neon-orange">
+                    Join Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center hero-bg pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-titan-950 via-transparent to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-titan-orange/10 border border-titan-orange/30 text-titan-orange text-xs font-bold uppercase tracking-widest mb-6">
+                    <i data-lucide="zap" class="w-3.5 h-3.5"></i> Elite Fitness Experience
+                </div>
+                <h1 class="font-heading font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none mb-6">
+                    FORGE YOUR <span class="text-gradient">STRENGTH</span>, TRANSFORM YOUR <span class="text-gradient">LIFE</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed font-normal">
+                    Push your limits with state-of-the-art equipment, elite professional coaching, and an uncompromising high-energy atmosphere built for champions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-16">
+                    <button onclick="openModal('joinModal')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-extrabold text-base tracking-wide shadow-neon-orange hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        <span>Get Started Today</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <a href="#classes" class="px-8 py-4 rounded-xl bg-titan-800/80 hover:bg-titan-700 text-white font-bold text-base tracking-wide border border-titan-700 hover:border-titan-orange transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="play-circle" class="w-5 h-5 text-titan-orange"></i>
+                        <span>Explore Classes</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-titan-900/90 backdrop-blur border border-titan-800 shadow-xl">
+                <div class="flex items-center gap-4 p-3">
+                    <div class="w-12 h-12 rounded-xl bg-titan-orange/10 flex items-center justify-center text-titan-orange shrink-0">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-heading font-black text-2xl sm:text-3xl text-white">3,500+</div>
+                        <div class="text-xs text-gray-400 font-medium">Active Members</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-3">
+                    <div class="w-12 h-12 rounded-xl bg-titan-gold/10 flex items-center justify-center text-titan-gold shrink-0">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-heading font-black text-2xl sm:text-3xl text-white">25+</div>
+                        <div class="text-xs text-gray-400 font-medium">Expert Trainers</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-3">
+                    <div class="w-12 h-12 rounded-xl bg-titan-orange/10 flex items-center justify-center text-titan-orange shrink-0">
+                        <i data-lucide="flame" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-heading font-black text-2xl sm:text-3xl text-white">50+</div>
+                        <div class="text-xs text-gray-400 font-medium">Weekly Classes</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-3">
+                    <div class="w-12 h-12 rounded-xl bg-titan-gold/10 flex items-center justify-center text-titan-gold shrink-0">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-heading font-black text-2xl sm:text-3xl text-white">100%</div>
+                        <div class="text-xs text-gray-400 font-medium">Results Guaranteed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Features Grid -->
+    <section class="py-24 bg-titan-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Why Choose Titan</span>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-4">BUILT FOR ELITE PERFORMANCE</h2>
+                <p class="text-gray-400 text-base sm:text-lg">We provide everything you need to break through plateaus and achieve your absolute peak physical condition.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-8 rounded-2xl bg-titan-800/50 border border-titan-700/60 border-glow group hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center mb-6 group-hover:bg-titan-orange group-hover:text-titan-950 transition-colors shadow-lg">
+                        <i data-lucide="dumbbell" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-white">Advanced Equipment</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Top-tier free weights, Olympic lifting platforms, and cutting-edge resistance machines engineered for maximum gains.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-8 rounded-2xl bg-titan-800/50 border border-titan-700/60 border-glow group hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-titan-gold/10 text-titan-gold flex items-center justify-center mb-6 group-hover:bg-titan-gold group-hover:text-titan-950 transition-colors shadow-lg">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-white">Expert Trainers</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Certified professionals, former athletes, and elite coaches dedicated to tailoring your roadmap to success.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-8 rounded-2xl bg-titan-800/50 border border-titan-700/60 border-glow group hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center mb-6 group-hover:bg-titan-orange group-hover:text-titan-950 transition-colors shadow-lg">
+                        <i data-lucide="apple" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-white">Nutrition Guidance</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Customized meal plans, macro breakdowns, and ongoing nutritional consultations to fuel your muscle growth.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="p-8 rounded-2xl bg-titan-800/50 border border-titan-700/60 border-glow group hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-titan-gold/10 text-titan-gold flex items-center justify-center mb-6 group-hover:bg-titan-gold group-hover:text-titan-950 transition-colors shadow-lg">
+                        <i data-lucide="clock" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-white">24/7 Access</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Train on your own schedule. Secure biometric entry ensures full round-the-clock access whenever inspiration hits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="py-24 bg-titan-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">High-Energy Workouts</span>
+                    <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight">FEATURED CLASSES</h2>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 bg-titan-900 p-1.5 rounded-xl border border-titan-800">
+                    <button onclick="filterClasses('all')" class="class-filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-titan-orange text-titan-950 transition-all" data-filter="all">All Classes</button>
+                    <button onclick="filterClasses('strength')" class="class-filter-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition-all" data-filter="strength">Strength</button>
+                    <button onclick="filterClasses('cardio')" class="class-filter-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition-all" data-filter="cardio">Cardio</button>
+                    <button onclick="filterClasses('crossfit')" class="class-filter-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition-all" data-filter="crossfit">CrossFit</button>
+                    <button onclick="filterClasses('yoga')" class="class-filter-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition-all" data-filter="yoga">Yoga</button>
+                </div>
+            </div>
+
+            <!-- Class Cards Grid -->
+            <div id="classesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Class Card 1 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="strength">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?q=80&w=800&auto=format&fit=crop" alt="Heavy Powerlifting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=Powerlifting'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-titan-orange text-titan-950 font-bold text-xs uppercase tracking-wider">Strength</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: High</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Titan Powerlifting</h3>
+                        <p class="text-gray-400 text-sm mb-6">Master the big three lifts (squat, bench press, deadlift) with precision form and progressive overload.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 60 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Marcus Vance</span>
+                        </div>
+                        <button onclick="bookClass('Titan Powerlifting')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Class Card 2 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="cardio">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop" alt="HIIT Burn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=HIIT+Burn'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-titan-gold text-titan-950 font-bold text-xs uppercase tracking-wider">Cardio</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: Extreme</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Inferno HIIT Burn</h3>
+                        <p class="text-gray-400 text-sm mb-6">High-intensity interval training designed to torch calories, boost endurance, and shred fat rapidly.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 45 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Sarah Jenkins</span>
+                        </div>
+                        <button onclick="bookClass('Inferno HIIT Burn')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Class Card 3 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="crossfit">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="CrossFit WOD" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=CrossFit+WOD'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-titan-orange text-titan-950 font-bold text-xs uppercase tracking-wider">CrossFit</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: Extreme</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Titan WOD Extreme</h3>
+                        <p class="text-gray-400 text-sm mb-6">Constantly varied functional movements performed at high intensity. Test your physical limits.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 60 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Jaxson Steel</span>
+                        </div>
+                        <button onclick="bookClass('Titan WOD Extreme')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Class Card 4 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="yoga">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop" alt="Power Yoga" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=Power+Yoga'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-amber-500 text-titan-950 font-bold text-xs uppercase tracking-wider">Yoga</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: Moderate</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Warrior Flow Yoga</h3>
+                        <p class="text-gray-400 text-sm mb-6">Enhance flexibility, core stability, and mental focus through dynamic athletic stretching and flow.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 60 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Elena Rostova</span>
+                        </div>
+                        <button onclick="bookClass('Warrior Flow Yoga')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Class Card 5 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="strength">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Body Sculpting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=Body+Sculpting'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-titan-orange text-titan-950 font-bold text-xs uppercase tracking-wider">Strength</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: Moderate</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Titan Hypertrophy</h3>
+                        <p class="text-gray-400 text-sm mb-6">Targeted muscle isolation and volume training designed to maximize muscle size and definition.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 60 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Marcus Vance</span>
+                        </div>
+                        <button onclick="bookClass('Titan Hypertrophy')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Class Card 6 -->
+                <div class="class-card overflow-hidden rounded-2xl bg-titan-900 border border-titan-800 group" data-category="cardio">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop" alt="Boxing Strike" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181b24/ff5e00?text=Boxing+Strike'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-titan-gold text-titan-950 font-bold text-xs uppercase tracking-wider">Cardio</span>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-titan-950/80 backdrop-blur text-titan-gold font-bold text-xs">Intensity: High</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-2xl mb-2 text-white">Titan Strike Boxing</h3>
+                        <p class="text-gray-400 text-sm mb-6">Combinations, heavy bag work, and core conditioning to build striking power and cardiovascular stamina.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-titan-800 text-xs text-gray-400 mb-6">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-titan-orange"></i> 50 Mins</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-titan-gold"></i> Coach Jaxson Steel</span>
+                        </div>
+                        <button onclick="bookClass('Titan Strike Boxing')" class="w-full py-3 rounded-xl bg-titan-800 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-700 hover:border-titan-orange flex items-center justify-center gap-2">
+                            <span>Book Class</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive BMI & Calorie Calculator Section -->
+    <section id="calculator" class="py-24 bg-titan-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Fitness Diagnostics</span>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-4">BMI & CALORIE CALCULATOR</h2>
+                <p class="text-gray-400 text-base sm:text-lg">Calculate your Body Mass Index (BMI) and discover your recommended daily caloric intake instantly.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 bg-titan-950 p-8 sm:p-10 rounded-3xl border border-titan-800 shadow-2xl">
+                <!-- Calculator Form -->
+                <form id="calcForm" onsubmit="calculateFitness(event)" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Weight (kg)</label>
+                            <input type="number" id="calcWeight" required min="30" max="300" placeholder="e.g. 75" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Height (cm)</label>
+                            <input type="number" id="calcHeight" required min="100" max="250" placeholder="e.g. 178" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Age (Years)</label>
+                            <input type="number" id="calcAge" required min="12" max="100" placeholder="e.g. 25" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Gender</label>
+                            <select id="calcGender" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-titan-orange transition-colors">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Activity Level</label>
+                        <select id="calcActivity" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-titan-orange transition-colors">
+                            <option value="1.2">Sedentary (Little or no exercise)</option>
+                            <option value="1.375">Lightly Active (1-3 days/week)</option>
+                            <option value="1.55">Moderately Active (3-5 days/week)</option>
+                            <option value="1.725">Very Active (6-7 days/week)</option>
+                            <option value="1.9">Extra Active (Hard training / physical job)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-extrabold text-base tracking-wide shadow-neon-orange hover:scale-[1.02] active:scale-98 transition-transform">
+                        Calculate Results
+                    </button>
+                </form>
+
+                <!-- Results Display Panel -->
+                <div class="bg-titan-900 p-8 rounded-2xl border border-titan-800 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-heading font-bold text-xl text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5 text-titan-orange"></i> Your Diagnostics Report
+                        </h3>
+                        <div id="calcPlaceholder" class="text-center py-12 text-gray-500">
+                            <i data-lucide="calculator" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
+                            <p class="text-sm">Enter your metrics on the left and click calculate to view your BMI and daily caloric requirements.</p>
+                        </div>
+                        <div id="calcResults" class="hidden space-y-6">
+                            <div class="p-4 rounded-xl bg-titan-950 border border-titan-800">
+                                <div class="text-xs text-gray-400 font-bold uppercase mb-1">Body Mass Index (BMI)</div>
+                                <div class="flex items-baseline gap-3">
+                                    <span id="bmiValue" class="font-heading font-black text-4xl text-white">0.0</span>
+                                    <span id="bmiCategory" class="px-3 py-1 rounded-full text-xs font-extrabold uppercase">Normal</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-titan-950 border border-titan-800">
+                                    <div class="text-xs text-gray-400 font-bold uppercase mb-1">Maintenance Calories</div>
+                                    <span id="maintenanceCalories" class="font-heading font-bold text-2xl text-titan-gold">0 kcal</span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-titan-950 border border-titan-800">
+                                    <div class="text-xs text-gray-400 font-bold uppercase mb-1">Muscle Gain (Surplus)</div>
+                                    <span id="surplusCalories" class="font-heading font-bold text-2xl text-titan-orange">0 kcal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-titan-800 text-xs text-gray-400 flex items-center gap-2">
+                        <i data-lucide="info" class="w-4 h-4 text-titan-gold shrink-0"></i>
+                        <span>Estimates based on Mifflin-St Jeor formula for accurate fitness tracking.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Trainers Section -->
+    <section id="trainers" class="py-24 bg-titan-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Elite Coaching Staff</span>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-4">MEET OUR TRAINERS</h2>
+                <p class="text-gray-400 text-base sm:text-lg">World-class professionals with proven track records in powerlifting, bodybuilding, athletic performance, and conditioning.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Trainer 1 -->
+                <div class="rounded-2xl bg-titan-900 border border-titan-800 overflow-hidden group border-glow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=800&auto=format&fit=crop" alt="Marcus Vance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x600/181b24/ff5e00?text=Marcus+Vance'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-heading font-bold text-2xl text-white">Marcus Vance</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-orange/10 text-titan-orange text-xs font-bold uppercase">Head Strength Coach</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">10+ years helping competitive powerlifters smash national records and transform physiques.</p>
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">Powerlifting</span>
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">Hypertrophy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer 2 -->
+                <div class="rounded-2xl bg-titan-900 border border-titan-800 overflow-hidden group border-glow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop" alt="Sarah Jenkins" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x600/181b24/ff5e00?text=Sarah+Jenkins'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-heading font-bold text-2xl text-white">Sarah Jenkins</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-gold/10 text-titan-gold text-xs font-bold uppercase">HIIT & Cardio Expert</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">Former Olympic sprinter specializing in high-intensity conditioning, fat loss, and agility.</p>
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">HIIT</span>
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">Endurance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer 3 -->
+                <div class="rounded-2xl bg-titan-900 border border-titan-800 overflow-hidden group border-glow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop" alt="Jaxson Steel" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x600/181b24/ff5e00?text=Jaxson+Steel'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-titan-900 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-heading font-bold text-2xl text-white">Jaxson Steel</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-orange/10 text-titan-orange text-xs font-bold uppercase">CrossFit Master</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">CrossFit Games competitor with an unmatched passion for functional fitness and mental toughness.</p>
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">CrossFit</span>
+                            <span class="px-3 py-1 rounded-lg bg-titan-800 text-xs font-medium text-gray-300">Olympic Lifting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Pricing Tiers -->
+    <section id="pricing" class="py-24 bg-titan-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Flexible Memberships</span>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-4">INVEST IN YOUR POTENTIAL</h2>
+                <p class="text-gray-400 text-base sm:text-lg mb-8">Choose the plan that fits your ambition. Save 20% when you pay annually.</p>
+                
+                <!-- Monthly / Annual Toggle -->
+                <div class="inline-flex items-center bg-titan-950 p-1.5 rounded-full border border-titan-800">
+                    <button onclick="setBilling('monthly')" id="monthlyBtn" class="px-6 py-2.5 rounded-full text-sm font-bold bg-titan-orange text-titan-950 transition-all">Monthly Billing</button>
+                    <button onclick="setBilling('annual')" id="annualBtn" class="px-6 py-2.5 rounded-full text-sm font-bold text-gray-400 hover:text-white transition-all">Annual Billing <span class="text-xs text-titan-gold font-extrabold ml-1">(Save 20%)</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Tier -->
+                <div class="rounded-3xl bg-titan-950 border border-titan-800 p-8 flex flex-col justify-between relative group hover:border-titan-orange transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-bold text-2xl text-white">Starter</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-800 text-xs font-bold text-gray-300 uppercase">Casual</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">Essential gym access for dedicated individual training.</p>
+                        <div class="mb-8">
+                            <span class="font-heading font-black text-5xl text-white price-starter" data-monthly="$49" data-annual="$39">$49</span>
+                            <span class="text-gray-400 text-sm billing-period"> / month</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Locker Room & Showers</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> 1 Complimentary Personal Training Session</li>
+                            <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="w-5 h-5"></i> Unlimited Group Classes</li>
+                            <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="w-5 h-5"></i> 24/7 Biometric Access</li>
+                        </ul>
+                    </div>
+                    <button onclick="openPlanModal('Starter')" class="w-full py-4 rounded-xl bg-titan-900 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-800">
+                        Choose Starter
+                    </button>
+                </div>
+
+                <!-- Pro Tier (Featured) -->
+                <div class="rounded-3xl bg-titan-950 border-2 border-titan-orange p-8 flex flex-col justify-between relative shadow-neon-orange transform lg:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-black text-xs uppercase tracking-widest shadow-lg">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-bold text-2xl text-white">Pro Titan</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-orange/20 text-titan-orange text-xs font-bold uppercase">Advanced</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">Complete access to all group classes and round-the-clock training.</p>
+                        <div class="mb-8">
+                            <span class="font-heading font-black text-5xl text-white price-pro" data-monthly="$89" data-annual="$71">$89</span>
+                            <span class="text-gray-400 text-sm billing-period"> / month</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Locker Room & Sauna</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Unlimited Group Classes</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> 24/7 Biometric Access</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Monthly Nutrition Consultation</li>
+                        </ul>
+                    </div>
+                    <button onclick="openPlanModal('Pro Titan')" class="w-full py-4 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-extrabold text-sm tracking-wide shadow-neon-orange hover:scale-105 transition-transform">
+                        Choose Pro Titan
+                    </button>
+                </div>
+
+                <!-- Elite Tier -->
+                <div class="rounded-3xl bg-titan-950 border border-titan-800 p-8 flex flex-col justify-between relative group hover:border-titan-orange transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-bold text-2xl text-white">Elite Beast</h3>
+                            <span class="px-3 py-1 rounded-full bg-titan-gold/20 text-titan-gold text-xs font-bold uppercase">Ultimate</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6">VIP treatment with dedicated personal coaching and recovery suites.</p>
+                        <div class="mb-8">
+                            <span class="font-heading font-black text-5xl text-white price-elite" data-monthly="$149" data-annual="$119">$149</span>
+                            <span class="text-gray-400 text-sm billing-period"> / month</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> All Pro Features Included</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> 4 Private 1-on-1 PT Sessions / Month</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Unlimited Guest Passes</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Full Recovery & Cryotherapy Suite</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-titan-orange"></i> Custom Supplement & Meal Plan</li>
+                        </ul>
+                    </div>
+                    <button onclick="openPlanModal('Elite Beast')" class="w-full py-4 rounded-xl bg-titan-900 hover:bg-titan-orange hover:text-titan-950 font-bold text-sm tracking-wide transition-all border border-titan-800">
+                        Choose Elite Beast
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials / Success Stories -->
+    <section class="py-24 bg-titan-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Success Stories</span>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-4">PROVEN TRANSFORMATIONS</h2>
+                <p class="text-gray-400 text-base sm:text-lg">Real members, real dedication, real results. Hear how Titan Fitness changed lives.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 rounded-3xl bg-titan-900 border border-titan-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-titan-gold mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">"Joining Titan Fitness was the best decision of my life. I dropped 18kg of fat and built serious muscle mass in 6 months under Coach Marcus."</p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-titan-800">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Jessica Taylor" class="w-12 h-12 rounded-full object-cover border border-titan-orange" onerror="this.src='https://placehold.co/100x100/181b24/ff5e00?text=JT'">
+                        <div>
+                            <h4 class="font-heading font-bold text-white">Jessica Taylor</h4>
+                            <p class="text-xs text-titan-orange font-medium">Member for 1 Year</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="p-8 rounded-3xl bg-titan-900 border border-titan-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-titan-gold mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">"The atmosphere here is electric. No judgment, just pure hard work and top-tier equipment. The 24/7 access fits my hectic software engineer schedule perfectly."</p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-titan-800">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="David Miller" class="w-12 h-12 rounded-full object-cover border border-titan-orange" onerror="this.src='https://placehold.co/100x100/181b24/ff5e00?text=DM'">
+                        <div>
+                            <h4 class="font-heading font-bold text-white">David Miller</h4>
+                            <p class="text-xs text-titan-orange font-medium">Member for 2 Years</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="p-8 rounded-3xl bg-titan-900 border border-titan-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-titan-gold mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">"The CrossFit WODs and nutrition guidance pushed me past plateaus I was stuck on for years. Titan is truly the ultimate training ground."</p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-titan-800">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Liam O'Connor" class="w-12 h-12 rounded-full object-cover border border-titan-orange" onerror="this.src='https://placehold.co/100x100/181b24/ff5e00?text=LO'">
+                        <div>
+                            <h4 class="font-heading font-bold text-white">Liam O'Connor</h4>
+                            <p class="text-xs text-titan-orange font-medium">Member for 8 Months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-24 bg-titan-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Info & Hours -->
+                <div>
+                    <span class="text-titan-orange font-bold text-sm tracking-widest uppercase mb-3 block">Get In Touch</span>
+                    <h2 class="font-heading font-black text-4xl sm:text-5xl tracking-tight mb-6">VISIT OUR HEADQUARTERS</h2>
+                    <p class="text-gray-400 text-base mb-8">Ready to take the first step? Drop by our facility for a guided tour or reach out to our support team.</p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-white text-lg">Location</h4>
+                                <p class="text-gray-400 text-sm">Titan Arena, 450 Strength Avenue, Metropolis</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-titan-gold/10 text-titan-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-white text-lg">Phone</h4>
+                                <p class="text-gray-400 text-sm">+1 (800) 555-TITAN</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-white text-lg">Working Hours</h4>
+                                <p class="text-gray-400 text-sm">Gym Floor: 24/7 Biometric Access</p>
+                                <p class="text-gray-400 text-sm">Staffed Hours: Mon - Sat (6:00 AM - 10:00 PM)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-titan-950 p-8 sm:p-10 rounded-3xl border border-titan-800 shadow-2xl relative">
+                    <h3 class="font-heading font-bold text-2xl text-white mb-6">Send Us a Message</h3>
+                    <form id="contactForm" onsubmit="submitContactForm(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
+                            <input type="text" id="contactName" required placeholder="John Doe" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
+                            <input type="email" id="contactEmail" required placeholder="john@example.com" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Message</label>
+                            <textarea id="contactMsg" required rows="4" placeholder="How can we help you achieve your goals?" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-extrabold text-base tracking-wide shadow-neon-orange hover:scale-[1.02] active:scale-98 transition-transform">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-titan-950 border-t border-titan-900 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                <!-- Brand Info -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-titan-orange to-titan-gold flex items-center justify-center text-titan-950 font-black text-xl shadow-neon-orange">
+                            <i data-lucide="dumbbell" class="w-6 h-6 stroke-[2.5]"></i>
+                        </div>
+                        <span class="font-heading font-black text-2xl tracking-wider text-white">TITAN<span class="text-titan-orange">FITNESS</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">
+                        The ultimate sanctuary for strength, conditioning, and elite physical transformation. Forge your legacy with Titan Fitness.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-titan-900 border border-titan-800 flex items-center justify-center text-gray-400 hover:text-titan-orange hover:border-titan-orange transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-titan-900 border border-titan-800 flex items-center justify-center text-gray-400 hover:text-titan-orange hover:border-titan-orange transition-all"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-titan-900 border border-titan-800 flex items-center justify-center text-gray-400 hover:text-titan-orange hover:border-titan-orange transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-titan-900 border border-titan-800 flex items-center justify-center text-gray-400 hover:text-titan-orange hover:border-titan-orange transition-all"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-titan-orange transition-colors">Home</a></li>
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">Classes</a></li>
+                        <li><a href="#trainers" class="hover:text-titan-orange transition-colors">Trainers</a></li>
+                        <li><a href="#calculator" class="hover:text-titan-orange transition-colors">Calculator</a></li>
+                        <li><a href="#pricing" class="hover:text-titan-orange transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Workouts -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-6">Workouts</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">Powerlifting</a></li>
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">HIIT Burn</a></li>
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">CrossFit WOD</a></li>
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">Power Yoga</a></li>
+                        <li><a href="#classes" class="hover:text-titan-orange transition-colors">Boxing Strike</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-6">Newsletter</h4>
+                    <p class="text-gray-400 text-sm mb-4">Subscribe for workout tips, nutrition advice, and special discounts.</p>
+                    <form onsubmit="subscribeNewsletter(event)" class="space-y-3">
+                        <input type="email" required placeholder="Your email address" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-titan-orange text-titan-950 font-bold text-sm tracking-wide shadow-neon-orange hover:bg-titan-gold transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-titan-900 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 TITAN FITNESS. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-titan-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-titan-orange transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-titan-orange transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- General Modal Template -->
+    <div id="globalModal" class="fixed inset-0 z-50 flex items-center justify-center bg-titan-950/80 backdrop-blur-md hidden">
+        <div class="bg-titan-900 border border-titan-800 rounded-3xl p-8 max-w-md w-full mx-4 relative shadow-2xl animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal('globalModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <div id="modalContent">
+                <!-- Dynamically populated modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-titan-900 border border-titan-orange px-6 py-4 rounded-2xl shadow-neon-orange flex items-center gap-3">
+        <div id="toastIcon" class="text-titan-orange"><i data-lucide="check-circle-2" class="w-6 h-6"></i></div>
+        <div>
+            <div id="toastTitle" class="font-heading font-bold text-white text-sm">Success</div>
+            <div id="toastMsg" class="text-xs text-gray-400">Action completed successfully.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-titan-950/95', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-titan-950/95', 'shadow-lg');
+            }
+        });
+
+        // Class Filtering Logic
+        function filterClasses(category) {
+            const buttons = document.querySelectorAll('.class-filter-btn');
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-titan-orange', 'text-titan-950');
+                    btn.classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('bg-titan-orange', 'text-titan-950');
+                    btn.classList.add('text-gray-400');
+                }
+            });
+
+            const cards = document.querySelectorAll('.class-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // BMI & Calorie Calculator Logic
+        function calculateFitness(e) {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('calcWeight').value);
+            const height = parseFloat(document.getElementById('calcHeight').value);
+            const age = parseInt(document.getElementById('calcAge').value);
+            const gender = document.getElementById('calcGender').value;
+            const activity = parseFloat(document.getElementById('calcActivity').value);
+
+            if (!weight || !height || !age) return;
+
+            // BMI Calculation
+            const heightM = height / 100;
+            const bmi = weight / (heightM * heightM);
+            
+            let category = '';
+            let catColor = '';
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                catColor = 'bg-blue-500/20 text-blue-400';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = 'Normal Weight';
+                catColor = 'bg-green-500/20 text-green-400';
+            } else if (bmi >= 25 && bmi < 30) {
+                category = 'Overweight';
+                catColor = 'bg-yellow-500/20 text-yellow-400';
+            } else {
+                category = 'Obese';
+                catColor = 'bg-red-500/20 text-red-400';
+            }
+
+            // BMR Calculation (Mifflin-St Jeor)
+            let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+            if (gender === 'male') {
+                bmr += 5;
+            } else {
+                bmr -= 161;
+            }
+
+            const maintenance = Math.round(bmr * activity);
+            const surplus = maintenance + 400;
+
+            // Display Results
+            document.getElementById('calcPlaceholder').classList.add('hidden');
+            document.getElementById('calcResults').classList.remove('hidden');
+
+            document.getElementById('bmiValue').innerText = bmi.toFixed(1);
+            const bmiCatEl = document.getElementById('bmiCategory');
+            bmiCatEl.innerText = category;
+            bmiCatEl.className = `px-3 py-1 rounded-full text-xs font-extrabold uppercase ${catColor}`;
+
+            document.getElementById('maintenanceCalories').innerText = `${maintenance} kcal`;
+            document.getElementById('surplusCalories').innerText = `${surplus} kcal`;
+
+            showToast('Calculation Complete', 'Your fitness diagnostics report has been updated.');
+        }
+
+        // Pricing Toggle (Monthly vs Annual)
+        let currentBilling = 'monthly';
+        function setBilling(type) {
+            currentBilling = type;
+            const monthlyBtn = document.getElementById('monthlyBtn');
+            const annualBtn = document.getElementById('annualBtn');
+
+            if (type === 'monthly') {
+                monthlyBtn.classList.add('bg-titan-orange', 'text-titan-950');
+                monthlyBtn.classList.remove('text-gray-400');
+                annualBtn.classList.remove('bg-titan-orange', 'text-titan-950');
+                annualBtn.classList.add('text-gray-400');
+
+                document.querySelector('.price-starter').innerText = '$49';
+                document.querySelector('.price-pro').innerText = '$89';
+                document.querySelector('.price-elite').innerText = '$149';
+            } else {
+                annualBtn.classList.add('bg-titan-orange', 'text-titan-950');
+                annualBtn.classList.remove('text-gray-400');
+                monthlyBtn.classList.remove('bg-titan-orange', 'text-titan-950');
+                monthlyBtn.classList.add('text-gray-400');
+
+                document.querySelector('.price-starter').innerText = '$39';
+                document.querySelector('.price-pro').innerText = '$71';
+                document.querySelector('.price-elite').innerText = '$119';
+            }
+        }
+
+        // Modal Handler
+        function openModal(modalId) {
+            const modal = document.getElementById('globalModal');
+            const content = document.getElementById('modalContent');
+            
+            if (modalId === 'joinModal') {
+                content.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-white">Join Titan Fitness</h3>
+                        <p class="text-gray-400 text-sm">Fill in your details to claim your free guest pass and consultation.</p>
+                    </div>
+                    <form onsubmit="handleJoinSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
+                            <input type="text" required placeholder="Alex Mercer" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
+                            <input type="email" required placeholder="alex@example.com" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Phone Number</label>
+                            <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-bold text-sm shadow-neon-orange mt-2">
+                            Claim Free Pass
+                        </button>
+                    </form>
+                `;
+            }
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openPlanModal(planName) {
+            const modal = document.getElementById('globalModal');
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-titan-gold/10 text-titan-gold flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-white">Select ${planName} Plan</h3>
+                    <p class="text-gray-400 text-sm">Billing Cycle: <span class="text-titan-orange font-bold uppercase">${currentBilling}</span></p>
+                </div>
+                <form onsubmit="handlePlanSubmit(event, '${planName}')" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
+                        <input type="text" required placeholder="Alex Mercer" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
+                        <input type="email" required placeholder="alex@example.com" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Card Details</label>
+                        <input type="text" required placeholder="4532 •••• •••• 8821" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-bold text-sm shadow-neon-orange mt-2">
+                        Complete Membership
+                    </button>
+                </form>
+            `;
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Interactive Class Booking
+        function bookClass(className) {
+            const modal = document.getElementById('globalModal');
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-titan-orange/10 text-titan-orange flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-white">Book: ${className}</h3>
+                    <p class="text-gray-400 text-sm">Secure your slot for the upcoming session.</p>
+                </div>
+                <form onsubmit="handleBookingSubmit(event, '${className}')" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Your Name</label>
+                        <input type="text" required placeholder="Alex Mercer" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Email / Member ID</label>
+                        <input type="text" required placeholder="alex@example.com" class="w-full bg-titan-950 border border-titan-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-titan-orange">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-bold text-sm shadow-neon-orange mt-2">
+                        Confirm Booking
+                    </button>
+                </form>
+            `;
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        // Form Submission Handlers with Toasts
+        function handleJoinSubmit(e) {
+            e.preventDefault();
+            closeModal('globalModal');
+            showToast('Pass Claimed!', 'Check your email for your digital guest pass barcode.');
+        }
+
+        function handlePlanSubmit(e, plan) {
+            e.preventDefault();
+            closeModal('globalModal');
+            showToast('Welcome to Titan!', `Your ${plan} membership has been successfully activated.`);
+        }
+
+        function handleBookingSubmit(e, className) {
+            e.preventDefault();
+            closeModal('globalModal');
+            showToast('Class Booked!', `You are successfully registered for ${className}. See you on the floor!`);
+        }
+
+        function submitContactForm(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').reset();
+            showToast('Message Sent!', 'Our team will get back to you within 24 hours.');
+        }
+
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            e.target.reset();
+            showToast('Subscribed!', 'You are now on the VIP Titan newsletter list.');
+        }
+
+        // Toast Notification Function
+        function showToast(title, message) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMsg').innerText = message;
+
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
