@@ -792,18 +792,18 @@
                 <!-- Contact Form -->
                 <div class="bg-titan-950 p-8 sm:p-10 rounded-3xl border border-titan-800 shadow-2xl relative">
                     <h3 class="font-heading font-bold text-2xl text-white mb-6">Send Us a Message</h3>
-                    <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" onsubmit="submitContactForm(event)" class="space-y-6">
+                    <form action="https://api.web3forms.com/submit"g method="POST" id="contactForm"  class="space-y-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
-                            <input type="text" id="contactName" required placeholder="John Doe" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                            <input type="text" id="contactName" name="name" required placeholder="John Doe" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
-                            <input type="email" id="contactEmail" required placeholder="john@example.com" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
+                            <input type="email" id="contactEmail" name="email" required placeholder="john@example.com" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Message</label>
-                            <textarea id="contactMsg" required rows="4" placeholder="How can we help you achieve your goals?" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors"></textarea>
+                            <textarea id="contactMsg" name="message" required rows="4" placeholder="How can we help you achieve your goals?" class="w-full bg-titan-900 border border-titan-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-titan-orange transition-colors"></textarea>
                         </div>
                         <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-titan-orange to-titan-gold text-titan-950 font-extrabold text-base tracking-wide shadow-neon-orange hover:scale-[1.02] active:scale-98 transition-transform">
                             Send Message
